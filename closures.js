@@ -23,14 +23,14 @@ function outer() {
 */
   
 // Code Here
-
+const inner = outer()
 
 
 //Once you do that, invoke inner.
 
 //Code Here
 
-
+inner();
 
 ////////// PROBLEM 2 //////////
 
@@ -52,8 +52,8 @@ function callFriend(name) {
 */
 
 //Code Here
-
-
+const callJake = callFriend('Jake')
+callJake('435-555-9248')
 
 ////////// PROBLEM 3 //////////
 
@@ -62,17 +62,30 @@ function callFriend(name) {
 */
 
 //Code Here
+function makeCounter() {
+  let count = 0
 
+  function addOne(){
+    return ++count
+  };
+  return addOne
+}
 
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
-
+//we create an copy of make counter because that is out of our scope, it is not global it is private.  With each copy we can 
+//manipulate the count.
+//function addOne is returned not explicitly but implicitly by makeCounter.  make counter defines count
+//add one returns the ++ of count
+//we return addOne which will return the ++ count
+// we return addOne because return ++count is private and not available.  return addOne makes that function available to us globally.
+//count is then manipulated/reassigned a new value by adding 1 each time 
 
 ////////// PROBLEM 4 //////////
 
@@ -87,19 +100,26 @@ function callFriend(name) {
 
 function counterFactory(value) {
   // Code here.
-
+  var counter = value
   return {
-
+    inc: function () {
+       counter = counter + 1;
+       return counter;
+    },
+    dec: function () {
+      counter = counter - 1;
+      return counter
+    }
   };
 }
 
 counter = counterFactory(10);
-// counter.inc() // 11
-// counter.inc() // 12
-// counter.inc() // 13
-// counter.dec() // 12
+counter.inc() // 11
+counter.inc() // 12
+counter.inc() // 13
+counter.dec() // 12
 
-
+// When you are returning a function then you need to use dot notatation, just like how you call an object in index for a controller
 
 ////////// PROBLEM 5 //////////
 

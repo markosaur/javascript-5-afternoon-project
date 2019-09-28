@@ -133,13 +133,16 @@ function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
-
+  function message(motivation){
+    return (`${welcomeText} ${firstname} ${lastname}.`)
+  }
+  
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-
+// greeting(message) 
 
 
 ////////// PROBLEM 6 //////////
@@ -164,8 +167,12 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: function (){
+        return privateMethod()
+    }
   };
 })();
+module.publicMethod()
 
 
 
@@ -183,6 +190,12 @@ function secretNumber() {
 
   return {
     // Code here
+    addToSecret(num){
+      return secret += num
+    },
+    takeAwayFromSecret(num){
+      return secret -= num
+    }
   };
 }
 
@@ -208,8 +221,9 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
+    let n = i
+    setTimeout(() => {
+      console.log(n);
     }, i * 1000);
   }
 }
